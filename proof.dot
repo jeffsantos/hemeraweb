@@ -1,0 +1,3 @@
+strict graph {
+	"(a & b) |- a" -- "a, b |- a"	 [label="&-Left"];
+}

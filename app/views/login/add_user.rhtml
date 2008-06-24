@@ -1,0 +1,25 @@
+<% @page_title = "Add new user" -%>
+
+<h1 class="support_title">Add new user</h1>
+
+<%= form_tag %>
+<table align="center" class="loginForm">
+    <tr>
+        <td>User name:</td>
+        <td><%= text_field "user", "name" %></td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td><%= password_field "user", "password" %></td>
+    </tr>
+    <tr>
+    	<td></td>
+		<td><%= submit_tag "Add user" %></td>
+    </tr>
+    <tr>
+    	<td></td>
+		<td> <%= link_to 'Back', :action => 'login' %></td>
+    </tr>	
+ </table>
+ <%= end_form_tag %>
+

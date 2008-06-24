@@ -1,0 +1,57 @@
+.main_title {
+  text-align: left;	
+}
+
+.support_title {
+  text-align: center;		
+}
+
+polygon {
+	fill:white;
+	stroke:white;
+}
+
+path {
+ 	fill:none;
+	stroke:black;	
+}
+
+text {
+	font-family:Nimbus Roman No9 L;
+	font-weight:regular;
+	font-size:11.34pt;
+}
+
+ellipse {
+	fill		 : #999;
+	stroke		 : #ccc;
+	stroke-width : 2px;
+}
+
+/* Quando o mouse passa em cima */
+#graph0 g:hover ellipse {
+	stroke		: yellow;
+}
+
+#graph0 g.clicked:hover ellipse {
+	stroke		: #ccc;
+}
+	
+/* Quando clicado, revela o conteudo */
+.clicked ellipse {
+	fill		: #ddd;
+}
+
+.colapsed {
+	fill		 : none;
+	stroke		 : none;
+	stroke-width :0px;
+	color		 :white;
+}
+
+/*
+.clicked text {
+	fill		: #000;
+	stroke		: #000;
+}
+*/

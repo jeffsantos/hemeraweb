@@ -1,0 +1,17 @@
+.context-menu {
+	visibility:hidden; /* No, you cannot use display:none; */
+	position:absolute;
+	border:1px solid #666;
+	margin:0;
+	padding:3px;
+	list-style:none;
+	width:100px;
+	background-color:#eee;
+} 
+.context-menu li:hover, .context-menu .context-menu-item-active {
+	background-color:#ccc;
+}
+.disabled {
+	color:#999;
+	background-color:#eee !important;
+}

@@ -1,0 +1,35 @@
+<% @page_title = "Proof result" -%>
+
+<!-- The Context Menu for Nodes -->
+<ul class="context-menu" id="node-menu">
+<li><a href="javascript:colapse(ContextMenu.context);">Colapse</a></li>
+<li>Expand</li>
+</ul>
+
+<h1>Proof Result</h1>
+
+<% form_tag :action => 'save' do %>
+<% for column in Theorem.content_columns %>
+<p>
+  <% if @theorem != nil %>
+  	<b><%= column.human_name %>:</b> <%=h @theorem.send(column.name) %>	
+ <% else %>
+    <b>Formula :</b> <%=h @formula %>
+ <% end %> 
+</p>
+<% end %>  
+<%= link_to 'New Theorem', :action => 'new' %>
+<br/>
+<br/>
+<%= button_to_function "Zoom Out", "zoom(0.5)" %>
+<%= button_to_function "Zoom In", "zoom(2)" %>
+<br/>
+
+<br/>
+<% end %>
+
+<%= @svg %>
+
+<script>
+	init();
+</script>
