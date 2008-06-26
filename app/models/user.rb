@@ -1,5 +1,5 @@
 require "digest/sha1"   
-
+# This class is automatically mapped to the database "users".
 class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :name, :password

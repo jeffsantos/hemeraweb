@@ -1,3 +1,6 @@
+# The login functions allow users to log in (what enables them
+# to mantain a list of saved theorems), new users to registrate
+# and logged users to log out.
 class LoginController < ApplicationController
   before_filter :authorize, :except => [:login, :add_user]
  
@@ -17,9 +20,9 @@ class LoginController < ApplicationController
   end
 
   # Display the login form and wait for user to
-  # enter a name and password. We then validate
-  # these, adding the user object to the session
-  # if they authorize.
+  # enter a name and password. Then it validates
+  # these, adding the user object to the session,
+  # if authorized.
   def login
     if request.get?
       session[:user_id] = nil
@@ -36,6 +39,7 @@ class LoginController < ApplicationController
     end
   end
 
+  # Log out by clearing the user entry in the session.
   def logout
     session[:user_id] = nil
     flash[:notice] = "Logged out"

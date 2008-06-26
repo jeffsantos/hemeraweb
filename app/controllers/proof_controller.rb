@@ -1,8 +1,12 @@
 require 'soap/wsdlDriver'
 
+# The proof functions allow authorized users
+# to add, delete, list, and edit theorems.
+# Only logged-in users can use some of these the actions.
 class ProofController < ApplicationController
   before_filter :authorize, :except => [:new, :index, :dictionary, :prove_or_save]
   
+  # An alias for #new, enabling users to prove formulas.
   def index  
     new
     render :action => 'new'
@@ -12,14 +16,17 @@ class ProofController < ApplicationController
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
+  # List all current theorems.
   def list
     @theorem_pages, @theorems = paginate :theorems, :per_page => 10, :conditions => ["user_id = ? ", session[:user_id]]
   end
 
+  # Show details of a particular formula
   def show
     @theorem = Theorem.find(params[:id])
   end
 
+  #enables users to prove formulas.
   def new
 
   end
@@ -33,6 +40,7 @@ class ProofController < ApplicationController
     end    
   end
   
+  # Include formulas in "My theorems".
   def save 
     hash = params['theorem']
     formula = hash['formula']
@@ -47,19 +55,31 @@ class ProofController < ApplicationController
     end
   end  
   
+  # Prove a formula when the user is not logged in.
   def prove_no_saved       
    hash = params['theorem']
    formula = hash['formula']
    prove(formula)
    render :action => 'prove'
+    rescue
+    logger.error("Attempt to access prove formula #{params[:id]}")
+    flash[:notice] = 'Invalid formula. Please, check the tutorial.'
+    redirect_to(:action => 'new')
   end
 
+  # Prove a formula when the user is logged in.
   def prove_saved
     @theorem = Theorem.find(params[:id])
     prove(@theorem.formula)
     render :action => 'prove'
+     rescue
+    logger.error("Attempt to access prove formula #{params[:id]}")
+    flash[:notice] = 'Invalid formula. Please, check the tutorial.'
+    redirect_to(:action => 'new')
   end
 
+  # Update an existing theorem based on values
+  # from the form.
   def update
     @theorem = Theorem.find(params[:id])
     if @theorem.update_attributes(params[:theorem])
@@ -70,6 +90,7 @@ class ProofController < ApplicationController
     end
   end
 
+  # Deletes a saved theorem.
   def destroy
     Theorem.find(params[:id]).destroy
     redirect_to :action => 'list'
