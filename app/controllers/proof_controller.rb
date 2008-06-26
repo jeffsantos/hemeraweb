@@ -57,25 +57,15 @@ class ProofController < ApplicationController
   
   # Prove a formula when the user is not logged in.
   def prove_no_saved       
-   hash = params['theorem']
-   formula = hash['formula']
-   prove(formula)
-   render :action => 'prove'
-    rescue
-    logger.error("Attempt to access prove formula #{params[:id]}")
-    flash[:notice] = 'Invalid formula. Please, check the tutorial.'
-    redirect_to(:action => 'new')
+    hash = params['theorem']
+    formula = hash['formula']
+    prove(formula)      
   end
 
   # Prove a formula when the user is logged in.
   def prove_saved
     @theorem = Theorem.find(params[:id])
     prove(@theorem.formula)
-    render :action => 'prove'
-     rescue
-    logger.error("Attempt to access prove formula #{params[:id]}")
-    flash[:notice] = 'Invalid formula. Please, check the tutorial.'
-    redirect_to(:action => 'new')
   end
 
   # Update an existing theorem based on values
@@ -100,10 +90,14 @@ class ProofController < ApplicationController
   def prove(formula)
     ws = SOAP::WSDLDriverFactory.new('http://169.254.3.230:8080/HemeraService?wsdl').create_rpc_driver
     proof = ws.prove(formula)
-    puts proof  
-   
-    #@svg = open_svg_test    
+    puts proof    
     @svg = proof
+    render :action => 'prove'  
+    
+    rescue
+    logger.error("Attempt to access prove formula #{params[:id]}")
+    flash[:notice] = 'Error connecting with the prover web service. Try again or check your environment.'
+    redirect_to(:action => 'new')        
   end
   
   def open_svg_test
