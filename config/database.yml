@@ -15,7 +15,7 @@ development:
   adapter: mysql
   database: hemera_development
   username: root
-  password: larinha
+  password: 
   host: localhost
 
 # Warning: The database defined as 'test' will be erased and
@@ -25,12 +25,12 @@ test:
   adapter: mysql
   database: hemera_test
   username: root
-  password: larinha
+  password: 
   host: localhost
 
 production:
   adapter: mysql
   database: hemera_production
   username: prod
-  password: larinha
+  password: 
   host: localhost
