@@ -28,7 +28,6 @@ ellipse {
 	stroke-width : 2px;
 }
 
-/* Quando o mouse passa em cima */
 #graph0 g:hover ellipse {
 	stroke		: yellow;
 }
@@ -37,7 +36,6 @@ ellipse {
 	stroke		: #ccc;
 }
 	
-/* Quando clicado, revela o conteudo */
 .clicked ellipse {
 	fill		: #ddd;
 }
