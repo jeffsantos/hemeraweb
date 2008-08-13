@@ -1,7 +1,12 @@
 /**
- * @author Jefferson
+ * graphediting.js
  */
 
+/**
+ * It initializes the svg proof. Removes any 
+ * style attribute from svg xml nodes and adds
+ * on click events in proof nodes.
+ */
 function init() {
 	
 	removeStyleAttribute();
@@ -9,6 +14,9 @@ function init() {
 	fitToArea();
 }
 
+/**
+ * Adds on click event to proof nodes.
+ */
 function addOnClickEventToNodes() {
 	
 	var graph = document.getElementById("graph0");
@@ -23,6 +31,10 @@ function addOnClickEventToNodes() {
 	}	
 }
 
+/**
+ * Action to be executed when a proof node is clicked.
+ * @param thisNode
+ */
 function nodeClicked(thisNode) {
 
 	if (thisNode.getAttribute("class") == "clicked") {
@@ -34,6 +46,10 @@ function nodeClicked(thisNode) {
 	}
 }
 
+/**
+ * Removes style attribute from any svg xml node.
+ * The style will be managed by css file.
+ */
 function removeStyleAttribute(){
 	var alltags = document.getElementsByTagName("*");
 	
@@ -45,6 +61,10 @@ function removeStyleAttribute(){
 	}
 }
 
+/**
+ * Executes zoom in an out of a proof.
+ * @param k - number of units to zoom a proof
+ */
 function zoom(k) {
 	
 	var graph = document.getElementById("graph0");
@@ -57,6 +77,9 @@ function zoom(k) {
 	graph.setAttribute("transform", "scale(" + value1 + " " + value2 + ") " + others);
 }
 
+/**
+ * Fits the proof to the svg canvas previously defined.
+ */
 function fitToArea() {
 	
 	var svgTag = document.getElementsByTagName("svg")[0];
@@ -66,43 +89,24 @@ function fitToArea() {
 	svgTag.setAttribute("preserveAspectRatio", "none");
 }
 	
+/**
+ * Enables context menu to a proof node.
+ * @param node
+ */
 function setContextMenu(node) {
 	ContextMenu.set("node-menu", node.id);
 }
 
+/**
+ * Colapses a proof node, that is, hides all 
+ * descendants of the proof node in the proof graph.
+ * @param node
+ */
 function colapse(node) {
 	for (var i = 0; i < node.childNodes.length; i++) {
 		current = node.childNodes[i];
 		alert(current.nodeName);		
 		current.setAttribute("class", "colapsed");
 	}	
-}
-
-function expand(node) {
-	
-}
-
-function pan(k1,k2) {
-
-	root=document.getElementsByTagName("svg")[0];
-	var old_value=root.currentScale;
-	if (k1!=0) 	{
-		old_x=root.currentTranslate.x;
-		x=old_x + k1 * 20;
-		root.currentTranslate.x=x;
-	}
-	else {
-		old_y=root.currentTranslate.y;
-		y=old_y + k2 * 20;
-		root.currentTranslate.y=y;
-	}
-}
-	
-function reset() {
-
-	root=document.getElementsByTagName("svg")[0];
-	root.currentTranslate.x=0;
-	root.currentTranslate.y=0;
-	root.currentScale=1;
 }
 
