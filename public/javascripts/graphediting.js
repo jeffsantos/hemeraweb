@@ -68,12 +68,22 @@ function removeStyleAttribute(){
 function zoom(k) {
 	
 	var graph = document.getElementById("graph0");
+	alert(graph);
 	transformAttr = graph.getAttribute("transform");
-	value1 = transformAttr.substring(transformAttr.indexOf("(") + 1, transformAttr.indexOf(" ") - 1);
-	value2 = transformAttr.substring(transformAttr.indexOf(" ") + 1, transformAttr.indexOf(")"));	
-	others = transformAttr.substring(transformAttr.indexOf(")") + 1), transformAttr.length - 1;
-	value1 = value1 * k;
-	value2 = value2 * k;
+	alert(transformAttr);
+	if (transformAttr != null) {
+		value1 = transformAttr.substring(transformAttr.indexOf("(") + 1, transformAttr.indexOf(" ") - 1);
+		value2 = transformAttr.substring(transformAttr.indexOf(" ") + 1, transformAttr.indexOf(")"));
+		others = transformAttr.substring(transformAttr.indexOf(")") + 1), transformAttr.length - 1;
+		value1 = value1 * k;
+		value2 = value2 * k;
+	}
+	else {
+		value1 = 1.33333;
+		value2 = 1.33333;
+		others = "rotate(0) translate(4 140)";
+		
+	}
 	graph.setAttribute("transform", "scale(" + value1 + " " + value2 + ") " + others);
 }
 
