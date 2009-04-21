@@ -68,9 +68,7 @@ function removeStyleAttribute(){
 function zoom(k) {
 	
 	var graph = document.getElementById("graph0");
-	alert(graph);
 	transformAttr = graph.getAttribute("transform");
-	alert(transformAttr);
 	if (transformAttr != null) {
 		value1 = transformAttr.substring(transformAttr.indexOf("(") + 1, transformAttr.indexOf(" ") - 1);
 		value2 = transformAttr.substring(transformAttr.indexOf(" ") + 1, transformAttr.indexOf(")"));
@@ -82,9 +80,8 @@ function zoom(k) {
 		value1 = 1.33333;
 		value2 = 1.33333;
 		others = "rotate(0) translate(4 140)";
-		
 	}
-	graph.setAttribute("transform", "scale(" + value1 + " " + value2 + ") " + others);
+	graph.setAttribute("transform", "scale(" + value1 + " " + value2 + ") " + others);			
 }
 
 /**
@@ -93,8 +90,8 @@ function zoom(k) {
 function fitToArea() {
 	
 	var svgTag = document.getElementsByTagName("svg")[0];
-	svgTag.setAttribute("width", "800px");
-	svgTag.setAttribute("height", "400px");
+	svgTag.setAttribute("width", "1024px");
+	svgTag.setAttribute("height", "720px");
 	svgTag.setAttribute("viewBox", "0 0 2400 1200");
 	svgTag.setAttribute("preserveAspectRatio", "none");
 }
