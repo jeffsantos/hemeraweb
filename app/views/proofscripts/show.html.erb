@@ -1,0 +1,13 @@
+<p>
+  <b>Title:</b>
+  <%=h @proofscript.title %>
+</p>
+
+<p>
+  <b>Specification:</b>
+  <%=h @proofscript.specification %>
+</p>
+<%= button_to 'Prove', :controller => 'proof', :action => 'prove_saved', :id => @proofscript %>
+
+<%= link_to 'Edit', edit_proofscript_path(@proofscript) %> |
+<%= link_to 'Back', proofscripts_path %>

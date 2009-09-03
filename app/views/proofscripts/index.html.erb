@@ -1,0 +1,30 @@
+<h1>Listing <%=User.find(session[:user_id]).name.capitalize %> Proof Scripts </h1>
+
+<div id="proofscript-list">
+    <table cellpadding="5" cellspacing="0">
+        <% for proofscript in @proofscripts %>
+        <tr valign="top" class="<%= cycle('list-line-odd', 'list-line-even') %>">
+            <td width="60%">
+                <span class="list-title"><%=h proofscript.title %></span>
+                <br/>
+                <%=h truncate(proofscript.specification.gsub(/<.*?>/,''), 80) %>
+            </td>
+            <td class="list-actions">
+                <%= link_to 'Show', proofscript %>
+                <br/>
+                <%= link_to 'Edit', edit_proofscript_path(proofscript) %>
+                <br/>
+                <%= link_to 'Destroy', proofscript,
+                :confirm => 'Are you sure?',
+                :method => :delete %>
+				<br/>
+				<%= link_to 'Prove', :controller => 'proof', :action => 'prove_saved', :id => proofscript %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+</div>
+
+<br />
+
+<%= link_to 'New Proof Script', new_proofscript_path %>

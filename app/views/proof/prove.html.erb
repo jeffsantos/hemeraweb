@@ -1,0 +1,17 @@
+<!-- The Context Menu for Nodes -->
+<ul class="context-menu" id="node-menu">
+<li><a href="javascript:colapse(ContextMenu.context);">Colapse</a></li>
+<li>Expand</li>
+</ul>
+
+<h1>Proof Result</h1>
+
+<%= button_to_function "Zoom Out", "zoom(0.5)" %>
+<%= button_to_function "Zoom In", "zoom(2)" %>
+<br/>
+
+<%= @svg %>
+
+<script>
+	init();
+</script>

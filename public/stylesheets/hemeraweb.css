@@ -1,0 +1,193 @@
+/* Global styles */
+
+h1 {
+        font:  150% sans-serif;
+        color: #226;
+        border-bottom: 3px dotted #77d;
+}
+
+/* Styles for proofscripts/index */
+
+#proofscript-list table {
+        border-collapse: collapse;
+}
+
+#proofscript-list table tr td {
+        padding: 5px;
+        vertical-align: top;
+}
+
+#proofscript-list .list-image {
+  width:        60px;
+  height:       70px;
+}
+
+#proofscript-list .list-title {
+  font-weight:bold;
+}
+
+#proofscript-list .list-description {
+  width:        60%;
+}
+
+#proofscript-list .list-description dl {
+        margin: 0;
+}
+
+#proofscript-list .list-description dt {
+	color:        #244;
+	font-weight:  bold;
+	font-size:    larger;
+}
+
+#proofscript-list .list-description dd {
+        margin: 0;
+}
+
+#proofscript-list .list-actions {
+  font-size:    x-small;
+  text-align:   right;
+  padding-left: 1em;
+}
+
+#proofscript-list .list-line-even {
+  background:   #e0f8f8;
+}
+
+#proofscript-list .list-line-odd {
+  background:   lightgray;
+}
+
+/* START:mainlayout */
+/* Styles for main page */
+
+#banner {
+  background: #9c9;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid;
+  font: small-caps 40px/40px "Times New Roman", serif;
+  color: #282;
+  text-align: center;
+}
+
+#banner img {
+  float: left;
+}
+
+#banner .subtitle {
+  font: small-caps 20px/20px "Times New Roman", serif;
+}
+
+#columns {
+  background: #141;
+}
+
+#main {
+  margin-left: 13em;
+  padding-top: 4ex;
+  padding-left: 2em;
+  background: white;
+}
+
+#side {
+  float: left;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  width: 12em;
+  background: #141;
+}
+
+#side a {
+  color: #bfb;
+  font-size: small;
+}
+/* END:mainlayout */
+
+
+/* START:form */
+/* Styles for hemeraweb forms */
+
+.hemeraweb-form fieldset {
+  background: #efe;
+}
+
+.hemeraweb-form legend {
+  color: #dfd;
+  background: #141;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
+
+.hemeraweb-form label {
+  width: 5em;
+  float: left;
+  text-align: right;
+  padding-top: 0.2em;
+  margin-right: 0.1em;
+  display: block;
+}
+
+.hemeraweb-form select, .hemeraweb-form textarea, .hemeraweb-form input {
+  margin-left: 0.5em;
+}
+
+.hemeraweb-form .submit {
+  margin-left: 4em;
+}
+
+.hemeraweb-form div {
+  margin: 0.5em 0;
+}
+/* END:form */
+
+/* The error box */
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: #EEFFEE;
+  display: inline;
+}
+
+.fieldWithErrors * {
+  background-color: red;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+#notice { 
+border: 2px solid red; 
+padding: 1em; 
+margin-bottom: 2em; 
+background-color: #f0f0f0; 
+font: bold smaller sans-serif; 
+} 

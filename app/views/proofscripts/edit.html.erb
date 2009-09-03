@@ -1,0 +1,11 @@
+<h1>Editing Proof Script</h1>
+
+<% form_for(@proofscript) do |f| %>
+  <%= render(:partial => "form", :object => f) %> 
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @proofscript %> |
+<%= link_to 'Back', proofscripts_path %>

@@ -1,0 +1,32 @@
+<div class="hemeraweb-form">
+    <%= error_messages_for :user %>
+    <fieldset>
+        Enter User Details 
+        <legend>
+            Enter User Details
+        </legend>
+        <% form_for(@user) do |f| %>
+        <p>
+            <label for="user_name">
+                Name:
+            </label>
+            <%= f.text_field :name, :size => 40 %>
+        </p>
+        <p>
+            <label for="user_password">
+                Password:
+            </label>
+            <%= f.password_field :password, :size => 40 %>
+        </p>
+        <p>
+            <label for="user_password_confirmation">
+                Confirm:
+            </label>
+            <%= f.password_field :password_confirmation, :size => 40 %>
+        </p>
+        <p>
+            <%= f.submit "Add User", :class => "submit" %>
+        </p>
+        <% end %>
+    </fieldset>
+</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+  		<meta http-equiv="content-type" content="<%= response.content_type %>; charset=UTF-8" />  
+        <title>Hemera Web</title>
+		<%= stylesheet_link_tag "scaffold" %>
+		<%= javascript_include_tag :defaults %>
+		
+		<%= javascript_include_tag "hemeraweb" %>  
+		<%= javascript_include_tag "graphediting" %>  
+		<%= javascript_include_tag "context_menu" %>    
+		<%= stylesheet_link_tag "hemeraweb" %>
+		<%= stylesheet_link_tag "graphediting" %>
+		<%= stylesheet_link_tag "context_menu" %>  
+    </head>
+    <body id="proofProcess">
+	    <div id="banner">
+	        <%= link_to image_tag("hemeralogo.jpg"), 
+						{ :controller => 'proof', :action  => :index } %>
+	        <%= @page_title || "Hemera Web" %>
+	        <br/>
+	        <span class="subtitle">A Web-Based Visual Proof Environment</span>
+	    </div>
+		
+        <div id="columns">
+            <div id="side">
+                <%= link_to 'Tutorial', :controller => 'proof', :action => 'tutorial' %>
+                <br/>
+                <%= link_to 'Prover Sintax', :controller => 'proof', :action => 'dictionary' %>
+                <br/>
+                <% if session[:user_id] %>
+	                <%= link_to 'My Proof Scripts', :controller => 'proofscripts', :action => 'index' %>
+	                <br/>
+	                <%= link_to 'Logout', :controller => 'admin', :action => 'logout' %>
+                <% else %>
+	                <%= link_to 'Login', :controller => 'admin', :action => 'login' %>
+                <% end %>		
+            </div>
+			
+            <div id="main">
+                <% if flash[:notice] -%>
+                <div id="notice">
+                    <%= flash[:notice] %>
+                </div>
+                <% end %>
+                <%= yield :layout %>
+            </div>
+        </div>
+    </body>
+</html>
