@@ -42,6 +42,7 @@ class ProofscriptsController < ApplicationController
   # POST /proofscripts.xml
   def create
     @proofscript = Proofscript.new(params[:proofscript])
+    @proofscript.user = User.find(session[:user_id])
 
     respond_to do |format|
       if @proofscript.save

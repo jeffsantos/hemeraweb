@@ -2,3 +2,5 @@
 .project
 *.log
 *.sqlite3
+.tmp*
+.settings/

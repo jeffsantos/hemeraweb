@@ -32,17 +32,21 @@ class ProofController < ApplicationController
     begin
       ws = SOAP::WSDLDriverFactory.new('http://localhost:8080/HemeraService?wsdl').create_rpc_driver
       proof = ws.prove(formula)
-      @svg = proof  
+      if proof[0][0, 5] == 'Error'
+        flash[:notice] = 'Syntax Error in the input formula. Please, check the language syntax in the dictionary.'
+        redirect_to(:back)
+      else
+        @svg = proof
+        render :action => 'prove', :content_type => 'application/xhtml+xml'        
+      end  
     rescue
       logger.error("Attempt to access prove formula #{params[:id]}")
       flash[:notice] = 'Error connecting with the prover web service. Try again or check your environment.'
       if session[:user_id]
-        redirect_to(:action => 'prove_no_saved')
+        redirect_to(:back)
       else
-        redirect_to(:action => 'prove_saved') 
-      end      
-    else  
-      render :action => 'prove', :content_type => 'application/xhtml+xml'
+        redirect_to(:action => 'prove_no_saved') 
+      end                    
     end
   end
 
