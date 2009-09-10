@@ -7,114 +7,88 @@
 <h1>Proof Result</h1>
 
 <br/>
-
-<svg id="proofarea" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" version="1.1" baseProfile="full" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 960 568" zoomAndPan="disable" xml:space="preserve" onload="init(evt)" onresize="reset()">
-	<defs>
-		<circle id="rim" cx="0" cy="0" r="7"/>
-		<g id="loupePlus">
-			<use xlink:href="#rim" fill="#e33c31">
-				<set attributeName="fill" to="pink" begin="zoomplus.mouseover" end="zoomplus.mouseout"/>
-			</use>
-			<path d="M-4,0h8M0,-4v8" fill="none" stroke="white" stroke-width="1.5" pointer-events="none"/>
-		</g>
-		<g id="loupe-">
-			<use xlink:href="#rim" fill="#e33c31">
-				<set attributeName="fill" to="pink" begin="zoomminus.mouseover" end="zoomminus.mouseout"/>
-			</use>
-			<path d="M-4,0h8" fill="none" stroke="white" stroke-width="1.5" pointer-events="none"/>
-		</g>
-		<g id="bullseye">
-			<use xlink:href="#rim" fill="white" stroke="#e33c31" stroke-width="1"/>
-			<circle cx="0" cy="0" r="4.25" fill="none" stroke="#e33c31" stroke-width="1"/>
-			<circle cx="0" cy="0" r="2" fill="#e33c31"/>
-		</g>
-		<g id="refresh">
-			<circle cx="7.5" cy="7" r="7" fill="#f2f5e9"/>
-			<path fill="none" stroke="#606060" stroke-width="1.75" d="M6.529,1.898c3.133,0,5.672,2.515,5.672,5.618s-2.539,5.618-5.672,5.618c-3.132,0-5.672-2.516-5.672-5.618c0-1.939,0.992-3.648,2.5-4.658"/>
-			<path fill="#202020" d="M5.132,1.898v3.49L3.369,6.314V2.85L0.498,0.926L2.205,0"/>
-		</g>
-		<circle id="sel_button" cx="0" cy="0" r="4" stroke="#606060" stroke-width="0.5"/>
-		<path id="dir_arrow" fill="none" stroke="white" d="M2.5,0v6 M0,2.5L2.5,0L5,2.5"/>
-		<rect id="dir_rect" x="0" y="0" width="8" height="8" fill="#000000"/>
-	</defs>
+		
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" id="proofarea" version="1.1" baseProfile="full" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 960 568" zoomAndPan="disable" xml:space="preserve" onload="init(evt)" onresize="reset()">
+    <defs>
+        <circle id="rim" cx="0" cy="0" r="7"/>
+        <g id="loupePlus">
+            <use fill="#e33c31" xlink:href="#rim">
+                <set attributeName="fill" to="pink" begin="zoomplus.mouseover" end="zoomplus.mouseout"/>
+            </use><path d="M-4,0h8M0,-4v8" fill="none" stroke="white" stroke-width="1.5" pointer-events="none"/>
+        </g>
+        <g id="loupe-">
+            <use fill="#e33c31" xlink:href="#rim">
+                <set attributeName="fill" to="pink" begin="zoomminus.mouseover" end="zoomminus.mouseout"/>
+            </use><path d="M-4,0h8" fill="none" stroke="white" stroke-width="1.5" pointer-events="none"/>
+        </g>
+        <g id="bullseye">
+            <use fill="white" stroke="#e33c31" stroke-width="1" xlink:href="#rim"/><circle cx="0" cy="0" r="4.25" fill="none" stroke="#e33c31" stroke-width="1"/><circle cx="0" cy="0" r="2" fill="#e33c31"/>
+        </g>
+        <g id="refresh">
+            <circle cx="7.5" cy="7" r="7" fill="#f2f5e9"/><path fill="none" stroke="#606060" stroke-width="1.75" d="M6.529,1.898c3.133,0,5.672,2.515,5.672,5.618s-2.539,5.618-5.672,5.618c-3.132,0-5.672-2.516-5.672-5.618c0-1.939,0.992-3.648,2.5-4.658"/><path fill="#202020" d="M5.132,1.898v3.49L3.369,6.314V2.85L0.498,0.926L2.205,0"/>
+        </g><circle id="sel_button" cx="0" cy="0" r="4" stroke="#606060" stroke-width="0.5"/><path id="dir_arrow" fill="none" stroke="white" d="M2.5,0v6 M0,2.5L2.5,0L5,2.5"/><rect id="dir_rect" x="0" y="0" width="8" height="8" fill="#000000"/>
+    </defs><rect fill="none" stroke="#808080" x="18.5" y="6.5" width="643" height="483"/><rect fill="white" x="18.5" y="6.5" width="643" height="483"/>
+    
+	<svg id="map" x="20" y="8" width="640" height="480">
+		<%=@svg%>	    	
+    </svg>
 	
-  	<rect fill="none" stroke="#808080" x="18.5" y="6.5" width="643" height="483"/>
-  	<rect fill="white" x="18.5" y="6.5" width="643" height="483"/>
-  
-	<svg id="map" x="20" y="8" width="640" height="480">		  
-		<%=@svg%>		  
-	</svg>
-		
-
-<!-- ZOOM AND PAN BOX -->
-	<g id="navigator" transform="translate(700 360)" fill="#404254">
-		<g>
-			<path fill="#f1f1ef" stroke="#606060" stroke-width=".5" d="M0,-0.5h240.5v18.5h-240.5z M60.5,0v18.5"/>
-			<g text-anchor="end" pointer-events="none">
-				<text id="zoom_value" font-family="Arial" font-size="14" x="222" y="14">1</text >
-				<text x="230" y="14" font-family="Georgia,serif" font-style="italic" font-size="12">x</text >
-			</g>
-			<use xlink:href="#arrow" x="225" y="5.5"/>
-		</g>
-		
-		<use id="zoomplus" xlink:href="#loupePlus" x="17" y="9" onmousedown="zoom('in')" onmouseup="javascript: if(az) stopauto();" onmouseout="javascript: if(az) stopauto();">
-		</use>
-		<use id="zoomminus" xlink:href="#loupe-" x="42" y="9" onmousedown="zoom('out')" onmouseup="javascript: if(az) stopauto()" onmouseout="javascript: if(az) stopauto();"/>
-		<use xlink:href="#refresh" x="70" y="2" onclick="zoom('org')"/>
-		<use xlink:href="#bullseye" x="101" y="9" onclick="getCoor();setCoor((nav_w-lensW)/2,(nav_h-lensH)/2,lensW,lensH)"/>
-		
-		<g id="zoomMenu" transform="translate(0 -100)">
-		  <rect fill="none" stroke="#808080" x="0.5" y="0.5" width="239.5" height="47.5"/>
-		  <rect fill="#f3f3f0" stroke="none" x="0.5" y="0.5" width="239.5" height="47.5"/>
-			<use id="az" xlink:href="#sel_button" x="10" y="16" fill="#ffffff" onclick="zoom_switch(evt,'az')"/>
-			<use id="rtp" xlink:href="#sel_button" x="10" y="32" fill="#ffffff" onclick="zoom_switch(evt,'rtp')"/>
-			<text font-family="'Trebuchet MS'" font-size="12"><tspan x="20" y="19">auto zoom</tspan><tspan x="20" dy="16">real time pan</tspan></text>
-		</g>
-		
-		<svg id="pan" x="0" y="21" width="240" height="180">
-			<g id="panload"/>
-			<g id="lensxf">
-			    <rect id="lens" fill="#dfdfdf" stroke="#ff0000" stroke-width="3" fill-opacity="0.25" x="1.5" y="1.5" width="0" height="0" onmousedown="enable_drag(evt,true);"/>
-			</g>
-		</svg>
-		
-		<rect id="nav_thread" fill="none" stroke="#a0a0a0" stroke-width=".3" x="0" y="21" width="240" height="180"/>
-		
-		<g id="arrows">
-			<g id="N" transform="translate(116 21)" onmousedown="arrowPan(0,-10)" onmouseup="stopauto();" onmouseout="stopauto();">
-				<use xlink:href="#dir_rect"/>
-				<use xlink:href="#dir_arrow" x="1.5" y="1"/>
-			</g>
-			<g id="E" transform="translate(232 107)" onmousedown="arrowPan(10,0)" onmouseup="stopauto();" onmouseout="stopauto();">
-				<use xlink:href="#dir_rect"/>
-				<use xlink:href="#dir_arrow" transform="rotate(90 2.5 3) translate(1 -1.5)"/>
-			</g>
-			<g id="S" transform="translate(116 193)" onmousedown="arrowPan(0,10)" onmouseup="stopauto();" onmouseout="stopauto();">
-				<use xlink:href="#dir_rect"/>
-				<use xlink:href="#dir_arrow" transform="rotate(180 2.5 3) translate(-1.5 -0.5)"/>
-			</g>
-			<g id="W" transform="translate(0 107)" onmousedown="arrowPan(-10,0)" onmouseup="stopauto();" onmouseout="stopauto();">
-				<use xlink:href="#dir_rect"/>
-				<use xlink:href="#dir_arrow" transform="rotate(270 2.5 3) translate(-1 1.5)"/>
-			</g>
-			<g id="NE" transform="translate(232 21)" onmousedown="arrowPan(10,-10)" onmouseup="stopauto();" onmouseout="stopauto();">
-				<use xlink:href="#dir_rect"/>
-				<use xlink:href="#dir_arrow" transform="rotate(45 2.5 3) translate(1.5 -0.5)"/>
-			</g>
-			<g id="SE" transform="translate(232 193)" onmousedown="arrowPan(10,10)" onmouseup="stopauto();" onmouseout="stopauto();">
-				<use xlink:href="#dir_rect"/>
-				<use xlink:href="#dir_arrow" transform="rotate(135 2.5 3) translate(-0.5 -1.5)"/>
-			</g>
-			<g id="SW" transform="translate(0 193)" onmousedown="arrowPan(-10,10)" onmouseup="stopauto();" onmouseout="stopauto();">
-				<use xlink:href="#dir_rect"/>
-				<use xlink:href="#dir_arrow" transform="rotate(225 2.5 3) translate(-1.5 0.5)"/>
-			</g>
-			<g id="NW" transform="translate(0 21)" onmousedown="arrowPan(-10,-10)" onmouseup="stopauto();" onmouseout="stopauto();">
-				<use xlink:href="#dir_rect"/>
-				<use xlink:href="#dir_arrow" transform="rotate(-45 2.5 3) translate(0.5 1.5)"/>
-			</g>
-		</g>
-		
-		<rect id="dragarea" fill="none" x="0" y="21" width="240" height="180" onmousemove="pan(evt)" onmouseup="enable_drag(evt,false);" onmouseout="enable_drag(evt,false);" pointer-events="none"/>
-	</g>
+    <!-- ZOOM AND PAN BOX -->
+    <g id="navigator" transform="translate(690,106) " fill="#404254">
+        <g>
+            <path fill="#f1f1ef" stroke="#606060" stroke-width=".5" d="M0,-0.5h240.5v18.5h-240.5z M60.5,0v18.5"/>
+            <g text-anchor="end" pointer-events="none">
+                <text id="zoom_value" font-family="Arial" font-size="14" x="222" y="14">
+                    1
+                </text>
+                <text x="230" y="14" font-family="Georgia,serif" font-style="italic" font-size="12">
+                    x
+                </text>
+            </g>
+            <use x="225" y="5.5" xlink:href="#arrow"/>
+        </g>
+        <use id="zoomplus" x="17" y="9" onmousedown="zoom('in')" onmouseup="javascript: if(az) stopauto();" onmouseout="javascript: if(az) stopauto();" xlink:href="#loupePlus">
+        </use>
+        <use id="zoomminus" x="42" y="9" onmousedown="zoom('out')" onmouseup="javascript: if(az) stopauto()" onmouseout="javascript: if(az) stopauto();" xlink:href="#loupe-"/><use x="70" y="2" onclick="zoom('org')" xlink:href="#refresh"/><use x="101" y="9" onclick="getCoor();setCoor((nav_w-lensW)/2,(nav_h-lensH)/2,lensW,lensH)" xlink:href="#bullseye"/>
+        <g id="zoomMenu" transform="translate(0 -100)">
+            <rect fill="none" stroke="#808080" x="0.5" y="0.5" width="239.5" height="47.5"/><rect fill="#f3f3f0" stroke="none" x="0.5" y="0.5" width="239.5" height="47.5"/><use id="az" x="10" y="16" fill="#ffffff" onclick="zoom_switch(evt,'az')" xlink:href="#sel_button"/><use id="rtp" x="10" y="32" fill="#ffffff" onclick="zoom_switch(evt,'rtp')" xlink:href="#sel_button"/>
+            <text font-family="'Trebuchet MS'" font-size="12">
+                <tspan x="20" y="19">auto zoom</tspan>
+                <tspan x="20" dy="16">real time pan</tspan>
+            </text>
+        </g>
+        <svg id="pan" x="0" y="21" width="240" height="180">
+            <g id="panload">
+            </g>
+            <g id="lensxf">
+                <rect id="lens" fill="#dfdfdf" stroke="#ff0000" stroke-width="3" fill-opacity="0.25" x="1.5" y="1.5" width="0" height="0" onmousedown="enable_drag(evt,true);"/>
+            </g>
+        </svg><rect id="nav_thread" fill="none" stroke="#a0a0a0" stroke-width=".3" x="0" y="21" width="240" height="180"/>
+        <g id="arrows">
+            <g id="N" transform="translate(116 21)" onmousedown="arrowPan(0,-10)" onmouseup="stopauto();" onmouseout="stopauto();">
+                <use xlink:href="#dir_rect"/><use x="1.5" y="1" xlink:href="#dir_arrow"/>
+            </g>
+            <g id="E" transform="translate(232 107)" onmousedown="arrowPan(10,0)" onmouseup="stopauto();" onmouseout="stopauto();">
+                <use xlink:href="#dir_rect"/><use transform="rotate(90 2.5 3) translate(1 -1.5)" xlink:href="#dir_arrow"/>
+            </g>
+            <g id="S" transform="translate(116 193)" onmousedown="arrowPan(0,10)" onmouseup="stopauto();" onmouseout="stopauto();">
+                <use xlink:href="#dir_rect"/><use transform="rotate(180 2.5 3) translate(-1.5 -0.5)" xlink:href="#dir_arrow"/>
+            </g>
+            <g id="W" transform="translate(0 107)" onmousedown="arrowPan(-10,0)" onmouseup="stopauto();" onmouseout="stopauto();">
+                <use xlink:href="#dir_rect"/><use transform="rotate(270 2.5 3) translate(-1 1.5)" xlink:href="#dir_arrow"/>
+            </g>
+            <g id="NE" transform="translate(232 21)" onmousedown="arrowPan(10,-10)" onmouseup="stopauto();" onmouseout="stopauto();">
+                <use xlink:href="#dir_rect"/><use transform="rotate(45 2.5 3) translate(1.5 -0.5)" xlink:href="#dir_arrow"/>
+            </g>
+            <g id="SE" transform="translate(232 193)" onmousedown="arrowPan(10,10)" onmouseup="stopauto();" onmouseout="stopauto();">
+                <use xlink:href="#dir_rect"/><use transform="rotate(135 2.5 3) translate(-0.5 -1.5)" xlink:href="#dir_arrow"/>
+            </g>
+            <g id="SW" transform="translate(0 193)" onmousedown="arrowPan(-10,10)" onmouseup="stopauto();" onmouseout="stopauto();">
+                <use xlink:href="#dir_rect"/><use transform="rotate(225 2.5 3) translate(-1.5 0.5)" xlink:href="#dir_arrow"/>
+            </g>
+            <g id="NW" transform="translate(0 21)" onmousedown="arrowPan(-10,-10)" onmouseup="stopauto();" onmouseout="stopauto();">
+                <use xlink:href="#dir_rect"/><use transform="rotate(-45 2.5 3) translate(0.5 1.5)" xlink:href="#dir_arrow"/>
+            </g>
+        </g><rect id="dragarea" fill="none" x="0" y="21" width="240" height="180" onmousemove="pan(evt)" onmouseup="enable_drag(evt,false);" onmouseout="enable_drag(evt,false);" pointer-events="none"/>
+    </g>
 </svg>
