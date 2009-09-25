@@ -10,7 +10,11 @@ class ProofController < ApplicationController
   end
   
   def index  
-    response.content_type = 'application/xhtml+xml'
+    if session[:user_id]
+      redirect_to :controller => "admin", :action => "index"      
+    else
+      response.content_type = 'application/xhtml+xml'
+    end
   end
   
   # Prove a formula when the user is not logged in.
@@ -30,7 +34,7 @@ class ProofController < ApplicationController
   private
   def prove(formula)
     begin
-      ws = SOAP::WSDLDriverFactory.new('http://localhost:8080/HemeraService?wsdl').create_rpc_driver
+      ws = SOAP::WSDLDriverFactory.new('http://localhost:8081/HemeraService?wsdl').create_rpc_driver
       proof = ws.prove(formula)
       if proof[0][0, 5] == 'Error'
         flash[:notice] = 'Syntax Error in the input formula. Please, check the language syntax in the dictionary.'
