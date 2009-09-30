@@ -190,4 +190,17 @@ padding: 1em;
 margin-bottom: 2em; 
 background-color: #f0f0f0; 
 font: bold smaller sans-serif; 
-} 
+}
+
+.status { 
+border: 2px solid darkgray;
+width:40em;
+padding: 1em; 
+margin-bottom: 1em;
+background-color: #f0f0f0; 
+font: bold smaller sans-serif; 
+}
+
+.toolbar {
+display: inline;	
+}

@@ -1,0 +1,2 @@
+page.replace_html("notice", :partial => "result")
+page.show("notice")

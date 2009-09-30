@@ -44,10 +44,13 @@
             </div>
 			
             <div id="main">
-                <% if flash[:notice] -%>
-                <div id="notice">
-                    <%= flash[:notice] %>
-                </div>
+                <% if flash[:notice] %>
+	                <div id="notice">
+	                    <%= flash[:notice] %>
+	                </div>
+				<% else %>
+					<div id="notice" style="display:none">						
+					</div>
                 <% end %>
                 <%= yield :layout %>
             </div>

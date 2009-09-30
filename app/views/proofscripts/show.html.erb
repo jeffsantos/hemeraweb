@@ -1,13 +1,21 @@
-<p>
-  <b>Title:</b>
-  <%=h @proofscript.title %>
-</p>
+<div id="prover_status">
+</div>
 
 <p>
-  <b>Specification:</b>
-  <%=h @proofscript.specification %>
+    <b>Title:</b>
+    <%=h @proofscript.title %>
 </p>
-<%= button_to 'Prove', :controller => 'proof', :action => 'prove_saved', :id => @proofscript %>
+<p>
+    <b>Specification:</b>
+    <%=h @proofscript.specification %>
+	<%= link_to 'Edit', edit_proofscript_path(@proofscript) %>
+</p>
 
-<%= link_to 'Edit', edit_proofscript_path(@proofscript) %> |
+
+<% form_remote_tag :url => {:controller => 'proof', :action => 'check', :id => @proofscript} do %>
+<%= submit_tag "Check Syntax" %>
+<% end %>
+<%= button_to 'Start a Proof Process', :controller => 'proof', :action => 'start', :id => @proofscript %>
+
+
 <%= link_to 'Back', proofscripts_path %>
