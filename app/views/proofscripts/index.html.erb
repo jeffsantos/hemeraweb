@@ -9,6 +9,9 @@
                 <br/>
                 <%=h truncate(proofscript.specification.gsub(/<.*?>/,''), 80) %>
             </td>
+            <td>
+                <%=proofscript.status %>
+            </td>			
             <td class="list-actions">
                 <%= link_to 'Show', proofscript %>
                 <br/>
@@ -17,8 +20,6 @@
                 <%= link_to 'Destroy', proofscript,
                 :confirm => 'Are you sure?',
                 :method => :delete %>
-				<br/>
-				<%= link_to 'Prove', :controller => 'proof', :action => 'prove_saved', :id => proofscript %>
             </td>
         </tr>
         <% end %>
