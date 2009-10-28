@@ -5,7 +5,7 @@
         <legend>
             Enter User Details
         </legend>
-        <% form_for(@user) do |f| %>
+        <% form_for @user, :url => { :action => "add_user" } do |f| %>
         <p>
             <label for="user_name">
                 Name:

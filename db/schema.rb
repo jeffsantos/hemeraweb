@@ -9,14 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090925135317) do
-
-  create_table "proof_processes", :force => true do |t|
-    t.string   "status"
-    t.integer  "proofscript_id", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20090930003720) do
 
   create_table "proofscripts", :force => true do |t|
     t.string   "title"
@@ -24,12 +17,13 @@ ActiveRecord::Schema.define(:version => 20090925135317) do
     t.integer  "user_id",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
   end
 
   create_table "prover_commands", :force => true do |t|
     t.string   "name"
     t.string   "args"
-    t.integer  "proof_process_id", :null => false
+    t.integer  "proofscript_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
