@@ -8,13 +8,13 @@ class StepCmd < ProverCommand
   def execute(args = {})
     raise ActiveRecordError.new("Null args not allowed") if args.nil?
     id = args[:id]
+    
     begin
-      ret, proofRepr, msg = self.prover.step(id)
+      ret = self.prover.step(id)
     rescue
-      logger.msg("Attempt to run a number of proof steps for user #{args[:id]}")
-      return false, "", CONNECTION_ERROR_MSG
-    else      
-      return eval(ret), proofRepr, msg
-    end
+      logger.error("Attempt to run a number of proof steps for user #{args[:id]}")
+      ret = 'Error connecting with the prover web service. Try again or check your environment.'                   
+    end      
+    ret
   end    
 end

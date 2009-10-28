@@ -15,14 +15,10 @@ class ProofscriptsController < ApplicationController
   # GET /proofscripts/1.xml
   def show
     @proofscript = Proofscript.find(params[:id])
-    
-    if @proofscript.status != Status::NotStarted
-      redirect_to :controller => 'proof', :action => 'prove' , :id => @proofscript
-    else
-      respond_to do |format|
-        format.html # show.html.erb
-        format.xml  { render :xml => @proofscript }
-      end
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @proofscript }
     end
   end
 
@@ -47,7 +43,6 @@ class ProofscriptsController < ApplicationController
   def create
     @proofscript = Proofscript.new(params[:proofscript])
     @proofscript.user = User.find(session[:user_id])
-    @proofscript.status = Status::NotStarted
 
     respond_to do |format|
       if @proofscript.save

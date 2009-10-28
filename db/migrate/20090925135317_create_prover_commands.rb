@@ -3,8 +3,8 @@ class CreateProverCommands < ActiveRecord::Migration
     create_table :prover_commands do |t|
       t.string :name
       t.string :args
-      t.integer :proofscript_id, :null => false, :options => 
-        "CONSTRAINT fk_prover_command_proofscripts REFERENCES proofscripts(id)"         
+      t.integer :proof_process_id, :null => false, :options => 
+        "CONSTRAINT fk_prover_command_proof_processes REFERENCES proof_process(id)"    
 
       t.timestamps
     end
