@@ -1,7 +1,8 @@
 class Status
   NotStarted = "Not Started"
   Started = "Started"
-  Finished = "Finished"
+  Proved = "Proved"
+  CounterExample = "Counter Example" 
 end
 
 
@@ -9,7 +10,7 @@ class Proofscript < ActiveRecord::Base
   validates_presence_of :title, :specification
   
   belongs_to :user
-  has_many :prover_commands
+  has_many :prover_commands, :dependent => :destroy
   
   def check_syntax()
     command = CheckSyntaxCmd.new    
@@ -19,17 +20,18 @@ class Proofscript < ActiveRecord::Base
 
   def start_proving()
     command = StartCmd.new
-    ret, msg = command.execute(:id => self.user_id, :spec => self.specification)
+    ret, proofRepr, msg = command.execute(:id => self.user_id, :spec => self.specification)
     save_command(command, ":id => self.user_id, :spec => self.specification")    
     change_status(Status::Started) if ret
-    return ret, msg
+    return ret, proofRepr, msg
   end
   
   def run_proof_step(steps)
     command = StepCmd.new
     ret, proofRepr, msg = command.execute(:id => self.user_id)
     save_command(command, ":id => self.user_id")    
-    change_status(Status::Finished) if msg == "No more goals."
+    change_status(Status::Proved) if msg == "No more goals."
+    change_status(Status::CounterExample) if msg == "No proof rules applicable."    
     return ret, proofRepr, msg
   end
 
@@ -37,7 +39,8 @@ class Proofscript < ActiveRecord::Base
     command = RunCmd.new   
     ret, proofRepr, msg = command.execute(:id => self.user_id)
     save_command(command, ":id => self.user_id")    
-    change_status(Status::Finished) if msg == "No more goals."
+    change_status(Status::Proved) if msg == "No more goals."
+    change_status(Status::CounterExample) if msg == "No proof rules applicable."    
     return ret, proofRepr, msg    
   end
   

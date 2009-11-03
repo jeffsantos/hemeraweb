@@ -5,15 +5,15 @@
 	<head>
   		<meta http-equiv="content-type" content="<%= response.content_type %>; charset=UTF-8" />  
         <title>Hemera Web</title>
-		<%= stylesheet_link_tag "scaffold" %>
-		<%= javascript_include_tag :defaults %>
-		
-		<%= javascript_include_tag "hemeraweb" %>  
+		<%= javascript_include_tag :defaults %>		
+		<%= javascript_include_tag "application" %>  
 		<%= javascript_include_tag "graphediting" %>  
 		<%= javascript_include_tag "context_menu" %>
-		<%= javascript_include_tag "zoom" %>        
+		<%= javascript_include_tag "proofview" %>        
 		
-		<%= stylesheet_link_tag "hemeraweb" %>
+		<%= stylesheet_link_tag "scaffold" %>		
+		<%= stylesheet_link_tag "application" %>
+		<%= stylesheet_link_tag "graphediting" %>	
 		<%= stylesheet_link_tag "context_menu" %>  
     </head>
     <body id="proofProcess">

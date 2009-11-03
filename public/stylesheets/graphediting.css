@@ -1,55 +1,73 @@
-.main_title {
-  text-align: left;	
-}
-
-.support_title {
-  text-align: center;		
-}
-
-polygon {
-	fill:white;
-	stroke:white;
-}
-
-path {
- 	fill:none;
-	stroke:black;	
-}
-
+/*-----------------------------------------------------
+ TEXTS
+-----------------------------------------------------*/
 text {
 	font-family:Nimbus Roman No9 L;
 	font-weight:regular;
 	font-size:11.34pt;
 }
 
-ellipse {
-	fill		 : #999;
-	stroke		 : #ccc;
-	stroke-width : 2px;
+/*-----------------------------------------------------
+ STATES OF CLOSED GOALS (polygons)
+-----------------------------------------------------*/
+.closedGoal polygon {
+	fill		 : #ddd;
+	stroke		 : black;
+	stroke-width : 1px;
 }
 
-#graph0 g:hover ellipse {
-	stroke		: yellow;
+.closedGoal_clicked polygon {
+	fill		: gray;
 }
 
-#graph0 g.clicked:hover ellipse {
-	stroke		: #ccc;
-}
-	
-.clicked ellipse {
-	fill		: #ddd;
-}
-
-.colapsed {
+.closedGoal_colapsed polygon {
 	fill		 : none;
 	stroke		 : none;
 	stroke-width :0px;
 	color		 :white;
 }
 
-/*
-.clicked text {
-	fill		: #000;
-	stroke		: #000;
+/*-----------------------------------------------------
+ STATES OF OPEN GOALS (ellipses)
+-----------------------------------------------------*/
+.openGoal ellipse {
+	fill		 : Gold;
+	stroke		 : Black;
+	stroke-width : 1px;
 }
-*/
+
+.openGoal_clicked ellipse {
+	fill		: GoldenRod;
+}
+
+/*-----------------------------------------------------
+ EFFECTS on CLOSED GOALS (polygons)
+-----------------------------------------------------*/
+.graph g.closedGoal:hover polygon {
+	fill		 : #ddd;
+	stroke		 : yellow;
+	stroke-width : 2x;
+}
+
+.graph g.closedGoal_clicked:hover polygon {
+	fill		 : Gray;
+	stroke		 : Yellow;
+	stroke-width : 2x;	
+}
+
+/*-----------------------------------------------------
+ EFFECTS on OPEN GOALS (ellipses)
+-----------------------------------------------------*/
+.graph g.openGoal:hover ellipse {
+	fill		 : Gold;
+	stroke		 : Yellow;
+	stroke-width : 2x;
+}
+
+.graph g.openGoal_clicked:hover ellipse {
+	fill		 : GoldenRod;
+	stroke		 : Yellow;
+	stroke-width : 2x;	
+}
+	
+

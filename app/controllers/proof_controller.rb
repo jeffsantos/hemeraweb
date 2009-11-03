@@ -42,11 +42,8 @@ class ProofController < ApplicationController
   end
 
   def start        
-    ret, msg = @proofscript.start_proving()
-    if !ret
-      flash[:notice] = msg
-    end    
-    render :action => 'prove', :content_type => 'application/xhtml+xml'
+    ret, proofRepr, msg = @proofscript.start_proving()
+    render_result_page(ret, proofRepr, msg)
   end
   
   def step

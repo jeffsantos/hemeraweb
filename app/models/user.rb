@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password 
   validate :password_non_blank 
   
-  has_many :proofscripts
+  has_many :proofscripts, :dependent => :destroy
   
   
   def self.authenticate(name, password) 
