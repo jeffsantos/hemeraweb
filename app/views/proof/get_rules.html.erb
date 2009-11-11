@@ -1,0 +1,16 @@
+<% if @msg != "" %>
+	<%= @msg %>
+<% else %>
+	<% if @rules %>
+		<% id = 0 %>
+		<% for rule in @rules %>	
+			<% withStr = "'goal=' + encodeURIComponent(getGoal(ContextMenu.context)) + '&ruleid=' + '#{id.to_s}' " %>	
+		  	<li><%= link_to_remote(h(rule), :url => {:action => 'apply_rule', :id => @proofscript},  
+										    :success => "applyRuleSuccessHandler(request)",
+										    :failure => "generalFailureHandler(request)",
+										    :with => withStr) %></li>
+			<% id += 1 %>			  
+		<% end %>		
+		<li><%=  link_to_function "Back...", "backToShowRulesMenu()" %></li>
+	<% end %>		
+<% end %>
