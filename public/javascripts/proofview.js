@@ -67,6 +67,7 @@ var lensX;
 var lensY;
 var lensW;
 var lensH;
+var lastLoadEvt;
 
 // -----------------------------------------------------
 // original list of IDs in the SVG document used by this script:
@@ -101,6 +102,7 @@ a_zmArray[a_zmArray.length - 1] = parseInt(a_zmArray[a_zmArray.length - 1]);
 //This function was changed from its original version
 //to use the custom code added in this script
 function init (evt) {
+	lastLoadEvt = evt;
 	svgdoc = evt.target.ownerDocument;
 	main = svgdoc.getElementById("proofarea");
 	map = svgdoc.getElementById("map");
@@ -180,6 +182,10 @@ function addDoc(evt,node) {
 //-----------------------------------------------------
 //BEGIN CUSTOMIZATION
 //-----------------------------------------------------
+function getLastLoadEvt() {
+	return lastLoadEvt;
+}
+
 function fitToArea() {
 	var proofArea = svgdoc.getElementById("proof");
 	

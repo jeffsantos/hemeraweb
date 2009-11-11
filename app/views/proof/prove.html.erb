@@ -5,7 +5,13 @@
 </ul>
 
 <ul class="context-menu" id="open-goal-menu">
-<li><%= link_to_function "Show rules", "showRules(ContextMenu.context)" %></li>
+<li><%= link_to_remote "Show Rules", :url => {:action => 'get_rules', :id => @proofscript},  
+										   :success => "getRulesSuccessHandler(request)",
+										   :failure => "generalFailureHandler(request)",
+										   :with => "'goal=' + encodeURIComponent(getGoal(ContextMenu.context))" %></li>										   
+</ul>
+
+<ul class="context-menu" id="rules-menu">
 </ul>
 
 <h1>Proof Result</h1>
@@ -19,7 +25,7 @@
 		</div>
 		<div class="toolbar">
 			<%= button_to 'Run all steps', :controller => 'proof', :action => 'run', :id => @proofscript %>
-		</div>
+		</div>	
 	<% end %>		
 <% end %>
 		
@@ -57,7 +63,7 @@
 	<rect fill="white" x="18.5" y="6.5" width="643" height="483"/>
     
 	<svg id="map" x="20" y="8" width="640" height="480">
-		<%=@svg%>	    	
+		<%=@svg%>	
     </svg>
 	
     <!-- ZOOM AND PAN BOX -->
@@ -125,4 +131,4 @@
     </g>
 </svg>
 
-<%= javascript_tag "initialize();" %> 
+<%= javascript_tag "configNodes();" %> 

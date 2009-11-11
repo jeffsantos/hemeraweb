@@ -11,6 +11,8 @@
 var ContextMenu = {
 	"max_width"	: false, // The width,
 	"max_height": false, // and height of the current window - to make sure that the menu dont go outside that limit.
+	"left"		: false,
+	"top"		: false,
 	"menu"		: "",
 	"context"	: "",
 	"active_menu":"", // This will have the id of the current shown menu
@@ -62,6 +64,8 @@ var ContextMenu = {
 		if(top < 0) top = 0;
 		if(left< 0) left= 0;
 		
+		ContextMenu.left = left;
+		ContextMenu.top = top;
 		ContextMenu.show(ContextMenu.menu, left, top);
 	},
 	

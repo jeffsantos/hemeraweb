@@ -44,6 +44,21 @@ class Proofscript < ActiveRecord::Base
     return ret, proofRepr, msg    
   end
   
+  def get_rules(goal)
+    command = GetRulesCmd.new    
+    rules = command.execute(:id => self.user_id, :goal => goal)
+    return rules
+  end
+  
+  def apply_rule(goal, ruleid)
+    command = ApplyRuleCmd.new
+    ret, proofRepr, msg = command.execute(:id => self.user_id, :goal => goal, :ruleid => ruleid)
+    save_command(command, ":id => self.user_id, :goal => '#{goal}', :ruleid => #{ruleid}")    
+    change_status(Status::Proved) if msg == "No more goals."
+    change_status(Status::CounterExample) if msg == "No proof rules applicable."    
+    return ret, proofRepr, msg
+  end  
+  
   def execute_command_log()
     ret = ""
     proofRepr = ""
