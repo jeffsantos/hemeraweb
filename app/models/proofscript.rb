@@ -67,6 +67,14 @@ class Proofscript < ActiveRecord::Base
     prover_commands.each do |command|
       str = command.name + ".new"
       cmd = eval(str)
+      
+      if command.name == "ApplyRuleCmd"
+        getRulesCmd = GetRulesCmd.new
+        param = command.args[0..command.args.index(", :ruleid")-1]
+        str = "getRulesCmd.execute(" + param + ")"
+        eval(str)
+      end
+      
       str = "ret, proofRepr, msg = cmd.execute(" + command.args + ")"
       self.instance_eval(str)
     end
